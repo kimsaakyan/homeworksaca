@@ -63,10 +63,10 @@ where removed even numbers, and odd numbers was multiplied with new array length
 */
 
 function oddNumbersMultArrLength(arr) {
-	let newArr = arr.filter(elem => elem % 2 !== 0);
-	let newArr1 = newArr.map((elem, i, array) => elem * array.length);
+	let oddArr = arr.filter(elem => elem % 2 !== 0);
+	let resArr = oddArr.map((elem, i, array) => elem * array.length);
 
-	return newArr1;
+	return resArr;
 }
 
 console.log(oddNumbersMultArrLength([1, -2, 4, 6, 8, 2, 13, -17]));
@@ -83,11 +83,9 @@ elements starting from a to b spaced by step.
 
 function createArrFromAtoB(a, b, step) {
 	let arr = [];
-
 	for (let i = a; i <= b; i += step) {
 		arr.push(i);
 	}
-
 	return arr;
 }
 
