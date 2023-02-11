@@ -147,3 +147,137 @@ const anna = new Account(888, 'Anna', 18000);
 
 console.log(Account.identifyAccounts(alex, anna));
 
+
+
+
+
+
+
+
+
+/*
+3. Write classes: Person, Student, Staff.
+Person should have: firstName, lastName, gender, age.
+It should have appropriate getters and setters.
+It should have a method: toString().
+Student is inherited from Person. It should have program(array of strings), year, fee.
+It should have appropriate getters and setters.
+It should have method: passExam(program, grade). Student should contain the data
+about its programs and exams. passExam will update that data, so if student passed all
+the exams(grade is great or equal to 50), its year should be increased by one.
+It should have a toString method.
+Teacher is inherited from Person. It should have program(string), pay.
+It should have appropriate getters and setters.
+It should have a toString method.
+*/
+
+class Person {
+	constructor(firstName, lastName, gender, age) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.age = age;
+	}
+
+
+	get getFullName() {
+		return this.firstName + " " + this.lastName;
+	}
+
+	get name() {
+		return this.firstName;
+	}
+	set name(newName) {
+		this.firstName = newName;
+	}
+
+	get lname() {
+		return this.lastName;
+	}
+	set lname(newLname) {
+		this.lastName = newLname;
+	}
+
+	get gen() {
+		return this.gender;
+	}
+	set gen(newGender) {
+		this.gender = newGender;
+	}
+
+	get agee() {
+		return this.age;
+	}
+	set agee(newAge) {
+		this.age = newAge;
+	}
+
+	toString() {
+		return `${this.firstName} ${this.lastName} is ${this.age} years old.`;
+	}
+}
+
+class Student extends Person {
+	constructor(firstName, lastName, gender, age, program, year, fee) {
+		super(firstName, lastName, gender, age);
+		this.program = program;
+		this.year = year;
+		this.fee = fee;
+		this.dataAboutExam = [];
+	}
+
+	passExam(program, grade) {
+		this.dataAboutExam.push({ program, grade });
+		let done = false;
+
+		this.dataAboutExam.forEach((exam) => {
+			if (exam.grade >= 50) {
+				done = true;
+			}
+		})
+
+		if (done) {
+			this.year++;
+		}
+	}
+
+	toString(){
+		return `${super.toString()}. ${this.firstName} is studying ${this.program}.`;
+	}
+}
+
+const student1 = new Student('Morgan', 'Freeman', 'male', 21, ['mathematica', 'english', 'history'], 1, 800000);
+
+
+class Staff extends Person {
+	constructor(firstName, lastName, gender, age, program, pay) {
+		super(firstName, lastName, gender, age);
+		this.program = program;
+		this.pay = pay;
+	}
+
+	get prog() {
+		return this.program;
+	}
+	set prog(value) {
+		this.prog = value;
+	}
+
+	get payment() {
+		return this.pay;
+	}
+	set payment(value) {
+		this.pay = value;
+	}
+
+	toString() {
+		return `${super.toString()}. Lecturer of ${this.program}`;
+	}
+}
+
+const staff1 = new Staff('Anna', 'Ivanovna', 'female', 36, 'History', 250000);
+
+
+
+
+
