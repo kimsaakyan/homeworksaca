@@ -109,3 +109,48 @@ Given an object. Invert it (keys become values and values become keys). If there
 more than key for that given value create an array.
 */
 
+function invertObject(obj) {
+	const invertedObj = {};
+
+	for (const key in obj) {
+		const value = obj[key];
+
+		if (invertedObj.hasOwnProperty(value)) {
+			if (Array.isArray(invertedObj[value])) {
+				invertedObj[value].push(key);
+			} else {
+				invertedObj[value] = [invertedObj[value], key];
+			}
+		} else {
+			invertedObj[value] = key;
+		}
+	}
+
+	return invertedObj;
+}
+
+// Example usage:
+const obj = {
+	a: 1,
+	b: 2,
+	c: 1,
+	d: 3
+};
+
+const inverted = invertObject(obj);
+console.log(inverted);
+
+
+/*
+В чём суть:
+С перва проверяем имеет ли наш "новый, инвертированный" объект, собстсвенное свойство с ключём,
+который у старого объекта является значением свойства. Это происходит в строке 10.
+
+Если есть такой ключ, проверяем его значение, через Array.isArray:
+1) Если его значение является массив, то пушим в этот массив key старого объекта.
+2) Если это не массив, мы создаем массив, в нём будет то значение которое уже было + key старого объекта.
+
+Если такого ключа нету, то мы просто, создаём новое свойство для инвертированного объекта, как ключ задаём ему, значение старого объекта,
+а как value зададим key старого объекта. То есть мы в новом объекте, просто меняем местами key:value на value:key.
+*/
+
