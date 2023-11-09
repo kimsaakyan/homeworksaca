@@ -106,8 +106,23 @@ console.log(recursiveSumOfDigits(29));
 
 
 
+// Second option (Task 3)
+function calcDigitsOfNumber(number) {
 
+	let result = 0;
 
+	while (number) {
+		const lastDigit = number % 10;
+		result += lastDigit;
+		number = (number - lastDigit) / 10;
+	}
+
+	if (result / 10 <= 1) {
+		return result;
+	} else {
+		return calcDigitsOfNumber(result);
+	}
+}
 
 
 
