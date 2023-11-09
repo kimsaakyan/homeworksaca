@@ -60,12 +60,22 @@ function flattenMultidimensionalArray(arr, i = 0) {
 
 console.log(flattenMultidimensionalArray([14, [1, [[[3, []]], 1], 0]]));
 
+##Right Option
+const arr = [1, [3, 4, [1, 2]], 10];
 
+function flatten(arr, result = []) {
+	arr.forEach((el) => {
+		if (typeof el === 'number') {
+			result.push(el);
+		}
+		if (Array.isArray(el)) {
+			flatten(el, result);
+		}
+	})
+	return result;
+}
 
-
-
-
-
+flatten(arr);
 
 
 
